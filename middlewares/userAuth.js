@@ -6,7 +6,7 @@ export const protectUser = async (req, res, next) => {
     const auth = req.headers.authorization;
 
     if (!auth || !auth.startsWith("Bearer "))
-      return res.status(401).json({ message: "Not authorized" });
+      return res.status(401).json({ message: "Not authorized, Please Signin First." });
 
     const token = auth.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

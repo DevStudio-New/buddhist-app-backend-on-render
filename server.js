@@ -16,11 +16,7 @@ import feedbackRoutes from "./routes/feedbackRoutes.js";
 const app = express();
 
 connectDB(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+  .then(() => console.log("MongoDB Connected"));
 
 
 // Middleware
@@ -38,7 +34,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/feedbacks", feedbackRoutes);
-// app.use("/api/events", eventRoutes);
+// app.use("/api/events", eventRoutes); 
 
 // Global errors
 app.use((err, req, res, next) => {
