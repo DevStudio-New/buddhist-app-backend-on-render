@@ -26,7 +26,7 @@ export const createFeedback = async (req, res, next) => {
 };
 
 
-// GET ALL FEEDBACKS (public)
+// GET ALL FEEDBACKS (public) 
 export const getFeedbacks = async (req, res, next) => {
   try {
     const feedbacks = await Feedback.find()
