@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 export const registerAdmin = async (req, res, next) => {
   try {
-    const { name, email, password, image } = req.body;
+    const { name, email, password } = req.body;
 
     const allowedEmails = process.env.ALLOWED_ADMIN_EMAILS.split(",");
 
@@ -29,7 +29,6 @@ export const registerAdmin = async (req, res, next) => {
       name,
       email,
       password: hashed,
-      image
     });
 
     res.json({ message: "Admin registered successfully", id: admin._id });
