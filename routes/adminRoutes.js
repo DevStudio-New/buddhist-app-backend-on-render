@@ -3,6 +3,7 @@ import { registerAdmin, loginAdmin } from "../controllers/adminController.js";
 import { protectAdmin } from "../middlewares/adminAuth.js";
 import User from "../models/User.js";
 import Feedback from "../models/Feedback.js";
+import {deleteFeedback, getFeedbacks} from "../controllers/feedbackController.js"
 
 
 const router = Router();
@@ -23,6 +24,8 @@ router.get("/stats", protectAdmin, async (req, res) => {
 
   res.json({ users, feedbacks });
 });
+router.get("/feedbacks", protectAdmin, getFeedbacks);
+router.delete("/feedBacks/:id", protectAdmin, deleteFeedback);
 
 
 export default router;

@@ -38,3 +38,14 @@ export const getFeedbacks = async (req, res, next) => {
     next(err);
   }
 };
+
+export const deleteFeedback = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Feedback.findByIdAndDelete(id);
+    res.json({ message: "Feedback removed" });
+  } catch (err) {
+    next(err);
+  }
+};
+
