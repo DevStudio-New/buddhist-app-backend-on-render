@@ -71,3 +71,34 @@ export const loginUser = async (req, res, next) => {
     next(err);
   }
 };
+
+
+// @desc Get all users
+export const getUsers = async (req, res, next) => {
+  try {
+    const users = await User.find().select("-password"); // remove password field
+    res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// @desc Delete a user by ID
+export const deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    await User.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
