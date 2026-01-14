@@ -19,13 +19,22 @@ const app = express();
 connectDB(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"));
 
-const CLIENT = process.env.CLIENT_URL.split(",");
+const allowedOrigins = process.env.CLIENT_URLS.split(",");
 // Middleware
 app.use(helmet());
 app.use(
   cors({
-    origin: CLIENT,
-    credentials: true
+    origin: function (origin, callback) {
+      // allow requests with no origin (Postman, mobile apps, etc.)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
 
