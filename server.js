@@ -12,28 +12,20 @@ dotenv.config();
 import adminRoutes from "./routes/adminRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import feedbackRoutes from "./routes/feedbackRoutes.js";
+import technicalRoutes from "./routes/technicalRoutes.js";
 
 const app = express();
-
+ 
 connectDB(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"));
 
-const allowedOrigins = process.env.CLIENT_URLS.split(",");
+const CLIENT = process.env.CLIENT_URL.split(",");
 // Middleware
 app.use(helmet());
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (Postman, mobile apps, etc.)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
+    origin: CLIENT,
+    credentials: true
   })
 );
 
@@ -43,6 +35,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/feedbacks", feedbackRoutes);
+app.use("/api/technical", technicalRoutes);
 // app.use("/api/events", eventRoutes); 
 
 // Global errors
