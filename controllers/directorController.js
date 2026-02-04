@@ -3,7 +3,7 @@ import Director from "../models/Director.js";
 /* GET ALL */
 export const getAllDirectors = async (req, res) => {
   try {
-    const directors = await Director.find().sort({ createdAt: -1 });
+    const directors = await Director.find().sort({ createdAt: 1 });
     res.json(directors);
   } catch (err) {
     res.status(500).json({ message: err.message });
