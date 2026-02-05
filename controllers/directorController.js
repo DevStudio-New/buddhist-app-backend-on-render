@@ -10,7 +10,7 @@ export const getAllDirectors = async (req, res) => {
   }
 };
 
-/* CREATE */
+/* CREATE */ 
 export const createDirector = async (req, res) => {
   try {
     const director = new Director(req.body);
