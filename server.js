@@ -15,6 +15,7 @@ import feedbackRoutes from "./routes/feedbackRoutes.js";
 import technicalRoutes from "./routes/technicalRoutes.js";
 import directorRoutes from "./routes/directorRoutes.js";
 import relationRoutes from "./routes/relationRoutes.js";
+import advisorRoutes from "./routes/advisorRoutes.js"
 
 const app = express();
  
@@ -49,6 +50,7 @@ app.use("/api/feedbacks", feedbackRoutes);
 app.use("/api/technical", technicalRoutes);
 app.use("/api/directors", directorRoutes);
 app.use("/api/relations", relationRoutes);
+app.use("/api/advisors", advisorRoutes);
 // app.use("/api/events", eventRoutes); 
 
 // Global errors
