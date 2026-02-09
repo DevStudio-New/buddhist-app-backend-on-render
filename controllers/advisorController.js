@@ -3,7 +3,7 @@ import Advisor from "../models/Advisor.js";
 /* ================= GET ALL ================= */ 
 export const getAdvisors = async (req, res) => {
   try {
-    const advisors = await Advisor.find().sort({ createdAt: -1 });
+    const advisors = await Advisor.find().sort({ createdAt: 1 });
     res.status(200).json(advisors);
   } catch (error) {
     res.status(500).json({ message: error.message });
